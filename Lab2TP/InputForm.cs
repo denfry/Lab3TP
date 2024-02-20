@@ -17,36 +17,60 @@ namespace Lab2TP
         public InputForm()
         {
             InitializeComponent();
-            
-            
+
         }
+        
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+            if (!string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                if (int.TryParse(textBox2.Text, out int baseLength) && int.TryParse(textBox1.Text, out int sideLength))
+                {
+                    if (baseLength > 0 && sideLength > 0)
+                    {
+                        if (baseLength > 6)
+                        {
+                            if (baseLength < 10)
+                            {
+                                if (baseLength < sideLength * 2 && sideLength < baseLength * 2)
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Стороны должны соответствовать правилу треугольника", "Ошибка");
+                                    return false;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Длина основания должна быть < 10", "Ошибка");
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Длина основания должна быть > 6", "Ошибка");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите положительные значения для длины основания и длины стороны", "Ошибка");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите числовые значения для длины основания и длины стороны", "Ошибка");
+                    return false;
+                }
+            }
+            else
             {
                 MessageBox.Show("Введите значения для длины основания и длины стороны", "Ошибка");
                 return false;
             }
-
-            if (!int.TryParse(textBox1.Text, out int baseLength) || !int.TryParse(textBox2.Text, out int sideLength))
-            {
-                MessageBox.Show("Введите числовые значения для длины основания и длины стороны", "Ошибка");
-                return false;
-            }
-
-            if (baseLength <= 0 || sideLength <= 0)
-            {
-                MessageBox.Show("Введите положительные значения для длины основания и длины стороны", "Ошибка");
-                return false;
-            }
-
-            if (baseLength >= sideLength * 2 || sideLength >= baseLength * 2)
-            {
-                MessageBox.Show("Стороны должны соответствовать правилу треугольника", "Ошибка");
-                return false;
-            }
-
-            return true;
         }
         public int GetBaseLength()
         {
@@ -86,6 +110,13 @@ namespace Lab2TP
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+
         }
     }
 }
