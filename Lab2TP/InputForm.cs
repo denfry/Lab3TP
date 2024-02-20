@@ -40,17 +40,9 @@ namespace Lab2TP
                 return false;
             }
 
-            if (baseLength >= 6 && baseLength <= 10)
+            if (baseLength >= sideLength * 2 || sideLength >= baseLength * 2)
             {
-                if (baseLength >= sideLength + sideLength || sideLength >= baseLength + baseLength)
-                {
-                    MessageBox.Show("Стороны должны соответствовать правилу треугольника", "Ошибка");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Длина основания должна быть от 6 до 10", "Ошибка");
+                MessageBox.Show("Стороны должны соответствовать правилу треугольника", "Ошибка");
                 return false;
             }
 

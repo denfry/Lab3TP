@@ -69,7 +69,7 @@ namespace Lab2TP
         }
         private void OutputButton(object sender, EventArgs e)
         {
-            if (А != null) // Проверка, что А не равно null
+            if (А != null)
             {
                 ResultForm resultForm = new ResultForm();
                 resultForm.SetResults(А.calculatePerimeter(), А.calculateSquare());
@@ -93,18 +93,13 @@ namespace Lab2TP
                     {
                         if (baseLength < sideLength + sideLength && sideLength < baseLength + sideLength)
                         {
-                            if (baseLength > 6 && baseLength < 10)
-                            {
+                            
                                 isoscelesTriangle triangle = new isoscelesTriangle(baseLength, sideLength);
 
                                 ResultForm resultForm = new ResultForm();
                                 resultForm.SetResults(triangle.calculatePerimeter(), triangle.calculateSquare());
                                 resultForm.ShowDialog();
-                            } 
-                            else
-                            {
-                                MessageBox.Show("Длина основания не может быть меньше 6 и больше 10", "Ошибка");
-                            }
+                            
                         }
                         else
                         {
@@ -151,13 +146,21 @@ namespace Lab2TP
             public void SetBaseLength(int length)
             {
                 if (length >= 0)
+                {
                     if (length > 6 && length < 10)
+                    {
                         baseLength = length;
-
+                    }
                     else
+                    {
                         MessageBox.Show("Длина основания не может быть меньше 6 и больше 10", "Ошибка");
+                    }
+                }
                 else
+                {
                     MessageBox.Show("Длина основания не может быть отрицательной", "Ошибка");
+                }
+                
             }
 
             public int GetBaseLength()
