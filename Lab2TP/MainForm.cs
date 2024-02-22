@@ -15,10 +15,11 @@ namespace Lab2TP
 
     {
         private isoscelesTriangle А;
-        isoscelesTriangle triangle1 = new isoscelesTriangle(7, 12);
+        isoscelesTriangle triangle1 = new isoscelesTriangle();
         isoscelesTriangle triangle2 = new isoscelesTriangle(8, 13);
         isoscelesTriangle triangle3 = new isoscelesTriangle(9, 14);
         isoscelesTriangle triangle4 = new isoscelesTriangle(8, 15);
+        // Добавить выделлыный объект, пустой конструктор
         
         public MainForm()
         {
@@ -72,7 +73,7 @@ namespace Lab2TP
             if (А != null)
             {
                 ResultForm resultForm = new ResultForm();
-                resultForm.SetResults(А.calculatePerimeter(), А.calculateSquare());
+                resultForm.SetResults(А.calculatePerimeter(), А.calculateSquare(), "Значения: основание = " + А.GetBaseLength() + ", сторона = " + А.GetSideLength());
                 resultForm.ShowDialog();
             } else
             {
@@ -98,7 +99,7 @@ namespace Lab2TP
                                 isoscelesTriangle triangle = new isoscelesTriangle(baseLength, sideLength);
 
                                 ResultForm resultForm = new ResultForm();
-                                resultForm.SetResults(triangle.calculatePerimeter(), triangle.calculateSquare());
+                                resultForm.SetResults(triangle.calculatePerimeter(), triangle.calculateSquare(), "");
                                 resultForm.ShowDialog();
                             }
                             else
@@ -135,6 +136,7 @@ namespace Lab2TP
 
         protected internal class isoscelesTriangle
         {
+            
             private int baseLength;
             private int sideLength;
 
@@ -148,6 +150,7 @@ namespace Lab2TP
             {
                 SetBaseLength(baseLength);
                 SetSideLength(sideLength);
+                
             }
 
             public void SetBaseLength(int length)
@@ -190,6 +193,7 @@ namespace Lab2TP
             {
                 return baseLength * sideLength / 2;
             }
+            
         }
         
 
@@ -201,13 +205,15 @@ namespace Lab2TP
             radioButton2.Checked = false;
             radioButton3.Checked = false;
             radioButton4.Checked = false;
-            triangle1 = new isoscelesTriangle(9, 12);
+            triangle1 = new isoscelesTriangle();
             triangle2 = new isoscelesTriangle(8, 13);
             triangle3 = new isoscelesTriangle(9, 14);
             triangle4 = new isoscelesTriangle(8, 15);
         }
 
-      
-        
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
